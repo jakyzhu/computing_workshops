@@ -9,11 +9,10 @@
 
 # <img src="http://images1.villagevoice.com/imager/u/original/6699280/got21.jpg" style="width: 600px;">
 
-# In[5]:
+# In[1]:
 
 ## SO MANY LIBRARIES
 from bs4 import BeautifulSoup as bs ## Importing an Object!
-import urlparse 
 from urllib2 import urlopen ## Importing some functions!
 from urllib import urlretrieve
 import unicodedata
@@ -22,20 +21,17 @@ import sys
 from __future__ import division ## Oddity with division
 
 
-# In[9]:
+# In[2]:
 
 URL = "http://www.readbooksvampire.com/George_R.R._Martin/A_Game_of_Thrones.html" ## CAPS = GLOBAL CONSTANT
 
 
-# In[10]:
+# In[12]:
 
 soup = bs(urlopen(URL)) ### Creating a 'bs' object here
 
 
-# In[11]:
-
-parsed = list(urlparse.urlparse(URL)) ## list is the Python ordered array data structure
-
+# <img src="soup_members.png">
 
 # In[12]:
 
@@ -201,10 +197,12 @@ with open("GoT_bookone.txt","w") as book:
     book.write(book_string)
 
 
-# In[39]:
+# In[10]:
 
 get_ipython().system(u'ls')
 
+
+# <img src="http://cdn.pastemagazine.com/www/system/images/photo_albums/game-of-thrones-memes/large/13883.jpg?1384968217">
 
 # In[22]:
 
@@ -216,8 +214,6 @@ import re ## regular expressions library
 wic = re.findall("[Ww][Ii][Nn][Tt][Ee][Rr] [Ii][Ss] [Cc][Oo][Mm][Ii][Nn][Gg]",book_string)
 wic,len(wic)
 
-
-# <img src="http://cdn.pastemagazine.com/www/system/images/photo_albums/game-of-thrones-memes/large/13883.jpg?1384968217">
 
 # In[41]:
 
@@ -248,7 +244,7 @@ for position in search_string.finditer(book_string):
 Stark_Positions = [position.start()/len(book_string) for position in search_string.finditer(book_string)]
 
 
-# In[46]:
+# In[48]:
 
 from matplotlib import pyplot as plt
 import numpy as np
@@ -289,3 +285,68 @@ plt.show()
 
 
 # <img src="http://cdn.pastemagazine.com/www/system/images/photo_albums/game-of-thrones-memes/large/21-memes-got-hipster-jon-snow-old-gods.jpg?1384968217">
+
+# ## bonus nltk discourse if time
+
+# In[8]:
+
+import nltk ## another library...seriously?
+
+
+# In[10]:
+
+tokens = nltk.word_tokenize(book_string)
+
+
+# In[60]:
+
+from collections import Counter,OrderedDict ## This is getting ridiculous
+
+
+# In[30]:
+
+word_freq = Counter(tokens) ## example of dictionary
+word_freq
+
+
+# In[28]:
+
+word_freq.most_common()[:10]
+
+
+# In[78]:
+
+top_nouns = {}
+top_adjectives = {}
+for word,freq in word_freq.most_common()[:1000]:
+    if nltk.pos_tag(nltk.word_tokenize(word))[0][1] == "NN": ## getting nouns
+        top_nouns[word] = freq
+    elif nltk.pos_tag(nltk.word_tokenize(word))[0][1] == "JJ": ## getting adjectives
+        top_adjectives[word] = freq
+
+
+# In[107]:
+
+ordered_top_nouns = OrderedDict(sorted(top_nouns.items(), key=lambda x: x[1], reverse=True))
+ordered_top_adjectives = OrderedDict(sorted(top_adjectives.items(),key=lambda x: x[1], reverse=True))
+
+
+# In[111]:
+
+plt.bar(np.arange(5),ordered_top_nouns.values()[:5])
+plt.xticks(np.arange(5)+.5,ordered_top_nouns.keys()[:5])
+plt.title("Top Nouns in GoT")
+plt.xlabel("Word")
+plt.ylabel("Frequency")
+plt.show()
+
+
+# In[114]:
+
+plt.bar(np.arange(5),ordered_top_adjectives.values()[:5])
+plt.xticks(np.arange(5)+.5,ordered_top_adjectives.keys()[:5])
+plt.title("Top Adjectives in GoT")
+plt.xlabel("Word")
+plt.ylabel("Frequency")
+plt.show()
+
