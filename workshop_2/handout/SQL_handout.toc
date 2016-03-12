@@ -1,0 +1,9 @@
+\beamer@endinputifotherversion {3.26pt}
+\beamer@sectionintoc {1}{Agenda}{2}{0}{1}
+\beamer@sectionintoc {2}{Getting Started}{3}{0}{2}
+\beamer@sectionintoc {3}{Keywords}{6}{0}{3}
+\beamer@subsectionintoc {3}{1}{SELECT Keyword}{6}{0}{3}
+\beamer@subsectionintoc {3}{2}{WHERE Keyword}{8}{0}{3}
+\beamer@subsectionintoc {3}{3}{GROUP BY Keyword}{10}{0}{3}
+\beamer@sectionintoc {4}{Inner Queries}{12}{0}{4}
+\beamer@sectionintoc {5}{Joins}{14}{0}{5}
