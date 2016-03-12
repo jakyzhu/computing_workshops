@@ -83,7 +83,7 @@
 	\subsection{SELECT Keyword}
 	\begin{frame}{SELECT}
 		\begin{block}{SELECT: Formulaic}
-			SELECT $<$ColumnNames$>$ FROM $<$TableName$>$ 
+			SELECT $<$ColumnNames$>$ FROM $<$TableName$>$ ;
 		\end{block}
 		\begin{block}{SELECT: Example}
 			SELECT First\_Name FROM Student\_Table;
@@ -114,7 +114,7 @@
 	\begin{frame}{Where}
 		\begin{block}{WHERE: Formulaic}
 			SELECT $<$ColumnNames$>$ FROM $<$TableName$>$ 
-			WHERE $<$Condition$>$
+			WHERE $<$Condition$>$;
 		\end{block}
 		\begin{block}{WHERE: Example}
 			SELECT First\_Name FROM Student\_Table 
@@ -143,7 +143,7 @@
 		\subsection{GROUP BY Keyword}
 		\begin{frame}
 		\begin{block}{GROUP BY: Formulaic}
-			SELECT $<$ Aggregate\_Function(ColumnNames) $>$ FROM $<$TableName$>$ GROUPBY $<$GroupColumnName$>$
+			SELECT $<$ Aggregate\_Function(ColumnNames) $>$ FROM $<$TableName$>$ GROUPBY $<$GroupColumnName$>$;
 		\end{block}
 		\begin{block}{GROUP BY: Example}
 			SELECT SUM(Student\_Age) FROM Student\_Table WHERE Student\_Age $>$19 GROUP BY Student\_Major;
@@ -155,7 +155,7 @@
 			\begin{tabular}{|l|l|}
 				\hline
 				Student\_Major & SUM(Student\_Age)  \\ \hline
-				Biostatistics  & 44 \\ \hline
+				Biostatistics  & 44 \\ \hline 
 			\end{tabular}
 		\end{table}			
 		\end{frame}
@@ -171,7 +171,7 @@
 	\section{Inner Queries}
 	\begin{frame}
 		\begin{block}{Inner Query: Formulaic}
-			SELECT $<$ColumnNames$>$ FROM (SELECT $<$ColumnNames$>$ FROM $<$TableName$>$ )
+			SELECT $<$ColumnNames$>$ FROM (SELECT $<$ColumnNames$>$ FROM $<$TableName$>$ );
 		\end{block}
 		\begin{block}{Inner Query: Example}
 			SELECT First\_Name FROM (SELECT * FROM Student\_Table WHERE Student\_Age$<$22) ;
@@ -253,7 +253,7 @@
 
 	\begin{frame}{Join: Example}
 		\begin{block}{Join: Formulaic}
-			SELECT Table\_1.$<$ColumnNames$>$, Table\_2.$<$ColumnNames$>$ FROM $<$TableName$>$ $<$Type$>$ JOIN 
+			SELECT Table\_1.$<$ColumnNames$>$, Table\_2.$<$ColumnNames$>$ FROM $<$Table1$>$ $<$Type$>$ JOIN Table\_2 ON Table\_1.key = Table\_2.key ;
 		\end{block}
 		\begin{block}{Join: Example}
 			SELECT Student\_Table.First\_Name StuClass\_Table.Class\_Name FROM Student\_Table INNER JOIN StuClass\_Table ON Student\_Table.S\_ID = StuClass\_Table.S\_ID;
