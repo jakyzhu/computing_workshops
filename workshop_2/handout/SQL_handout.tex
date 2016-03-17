@@ -20,86 +20,86 @@
 		materials found at \\
 		\href{https://github.com/apeterson91/computing_workshops}{https://github.com/apeterson91/computing\_workshops/workshop\_2}
 	\end{frame}
-
+	
 	\section{Agenda}
 	\begin{frame}{Agenda}
-				\begin{enumerate}
-					\item Motivation
-					\item Keywords:
-					\begin{itemize}
-						\item 'SELECT'
-						\item 'WHERE'
-						\item 'GROUP BY'
-					\end{itemize}
-					\item Inner queries
-					\item Joins
-					\begin{itemize}
-						\item Inner
-						\item Outer
-						\item Left, Right
-					\end{itemize}
-				\end{enumerate}
+		\begin{enumerate}
+			\item Motivation
+			\item Keywords:
+			\begin{itemize}
+				\item 'SELECT'
+				\item 'WHERE'
+				\item 'GROUP BY'
+			\end{itemize}
+			\item Inner queries
+			\item Joins
+			\begin{itemize}
+				\item Inner
+				\item Outer
+				\item Left, Right
+			\end{itemize}
+		\end{enumerate}
 	\end{frame}
-
+	
 	\section{Getting Started}
 	\begin{frame}{Motivation}
 		\begin{columns}
-		\begin{column}{.5 \textwidth}
-			\includegraphics[width=1 \textwidth]{sql_image.png}
-		\end{column}			
 			\begin{column}{.5 \textwidth}
-		\begin{itemize}
-			\item What is SQL and why is it important? \pause
-			\item SQL is a programming language that allows one to programmatically access data in databases \pause
-			\item i.e. With SQL we can \textit{query} a database for just the information we want and nothing else.
-		\end{itemize}
+				\includegraphics[width=1 \textwidth]{sql_image.png}
+			\end{column}			
+			\begin{column}{.5 \textwidth}
+				\begin{itemize}
+					\item What is SQL and why is it important? \pause
+					\item SQL is a programming language that allows one to programmatically access data in databases \pause
+					\item i.e. With SQL we can \textit{query} a database for just the information we want and nothing else.
+				\end{itemize}
 			\end{column}
 		\end{columns}
 	\end{frame}
 	
 	\begin{frame}{Set-Up:1 }
 		\begin{minipage}{1 \textwidth}
-\begin{table}[H]
-	\centering
-	\caption{Student\_Table}
-
-	\begin{tabular}{|l|l|l|l|l|}
-		\hline
-		S\_ID & First\_Name & Last\_Name & Student\_Age & Student\_Major \\ \hline
-		1           & John        & Smith      & 23           & Biostatistics  \\ \hline
-		2           & Anne        & Doroughty  & 21           & Biostatistics  \\ \hline
-		3           & Anthony     & Jones      & 19           & Statistics     \\ \hline
-	\end{tabular}
-\end{table}	
+			\begin{table}[H]
+				\centering
+				\caption{Student\_Table}
+				
+				\begin{tabular}{|l|l|l|l|l|}
+					\hline
+					S\_ID & First\_Name & Last\_Name & Student\_Age & Student\_Major \\ \hline
+					1           & John        & Smith      & 23           & Biostatistics  \\ \hline
+					2           & Anne        & Doroughty  & 21           & Biostatistics  \\ \hline
+					3           & Anthony     & Jones      & 19           & Statistics     \\ \hline
+				\end{tabular}
+			\end{table}	
 		\end{minipage}
-\end{frame}
-
-\begin{frame}{Set-Up:2}
-	Loading Data into SAS for \texttt{PROC SQL} exercises
-\end{frame}
+	\end{frame}
+	
+	\begin{frame}{Set-Up:2}
+		Loading Data into SAS for \texttt{PROC SQL} exercises
+	\end{frame}
 	
 	\section{Keywords}
 	
 	\subsection{SELECT Keyword}
 	\begin{frame}{SELECT}
 		\begin{block}{SELECT: Formulaic}
-			SELECT $<$ColumnNames$>$ FROM $<$TableName$>$ ;
+			SELECT $<$ColumnNames$>$ FROM $<$TableName$>$ 
 		\end{block}
 		\begin{block}{SELECT: Example}
 			SELECT First\_Name FROM Student\_Table;
 		\end{block}
-\begin{table}[H]
-	\centering
-	\caption*{}
-
-	\begin{tabular}{|l|}
-		\hline
-		 First\_Name  \\ \hline
-			John \\ \hline
-			Anne  \\ \hline
-			Anthony  \\    \hline
-	\end{tabular}
-\end{table}			
+		\begin{table}[H]
+			\centering
+			\caption*{}
+			
+			\begin{tabular}{|l|}
+				\hline
+				First\_Name  \\ \hline
+				John \\ \hline
+				Anne  \\ \hline
+				Anthony  \\    \hline
+			\end{tabular}
+		\end{table}			
 	\end{frame}
 	
 	\begin{frame}{SELECT example- SAS}
@@ -114,52 +114,52 @@
 	\begin{frame}{Where}
 		\begin{block}{WHERE: Formulaic}
 			SELECT $<$ColumnNames$>$ FROM $<$TableName$>$ 
-			WHERE $<$Condition$>$;
+			WHERE $<$Condition$>$
 		\end{block}
 		\begin{block}{WHERE: Example}
 			SELECT First\_Name FROM Student\_Table 
 			WHERE Student\_Age$<$22;
 		\end{block}
-	\begin{table}[H]
-	\centering
-	\caption*{}
-
-	\begin{tabular}{|l|}
-		\hline
-		First\_Name  \\ \hline
-		Anne  \\ \hline
-		Anthony  \\    \hline
-	\end{tabular}
-	\end{table}		
+		\begin{table}[H]
+			\centering
+			\caption*{}
+			
+			\begin{tabular}{|l|}
+				\hline
+				First\_Name  \\ \hline
+				Anne  \\ \hline
+				Anthony  \\    \hline
+			\end{tabular}
+		\end{table}		
 	\end{frame}
 	
 	\begin{frame}{WHERE example- SAS}
 		\texttt{PROC SQL;} \\
 		\texttt{SELECT First\_Name } \\
 		\texttt{FROM Student\_Table}\\
-		\texttt{WHERE Student\_Age > 22;} 
+		\texttt{WHERE Student\_Age < 22;} 
 		\texttt{QUIT;}
 	\end{frame}
-		\subsection{GROUP BY Keyword}
-		\begin{frame}
+	\subsection{GROUP BY Keyword}
+	\begin{frame}
 		\begin{block}{GROUP BY: Formulaic}
-			SELECT $<$ Aggregate\_Function(ColumnNames) $>$ FROM $<$TableName$>$ GROUPBY $<$GroupColumnName$>$;
+			SELECT $<$ Aggregate\_Function(ColumnNames) $>$ FROM $<$TableName$>$ GROUPBY $<$GroupColumnName$>$
 		\end{block}
 		\begin{block}{GROUP BY: Example}
-			SELECT SUM(Student\_Age) FROM Student\_Table WHERE Student\_Age $>$19 GROUP BY Student\_Major;
+			SELECT Student\_Major, SUM(Student\_Age) FROM Student\_Table WHERE Student\_Age $>$19 GROUP BY Student\_Major;
 		\end{block}
 		\begin{table}[H]
 			\centering
 			\caption*{}
-
+			
 			\begin{tabular}{|l|l|}
 				\hline
 				Student\_Major & SUM(Student\_Age)  \\ \hline
-				Biostatistics  & 44 \\ \hline 
+				Biostatistics  & 44 \\ \hline
 			\end{tabular}
 		\end{table}			
-		\end{frame}
-		
+	\end{frame}
+	
 	\begin{frame}{Group By example- SAS}
 		\texttt{PROC SQL;} \\
 		\texttt{SELECT SUM(Student\_Age) } \\
@@ -171,22 +171,22 @@
 	\section{Inner Queries}
 	\begin{frame}
 		\begin{block}{Inner Query: Formulaic}
-			SELECT $<$ColumnNames$>$ FROM (SELECT $<$ColumnNames$>$ FROM $<$TableName$>$ );
+			SELECT $<$ColumnNames$>$ FROM (SELECT $<$ColumnNames$>$ FROM $<$TableName$>$ )
 		\end{block}
 		\begin{block}{Inner Query: Example}
 			SELECT First\_Name FROM (SELECT * FROM Student\_Table WHERE Student\_Age$<$22) ;
 		\end{block}		
-	\begin{table}[H]
-	\centering
-	\caption*{}
-
-	\begin{tabular}{|l|}
-		\hline
-		First\_Name  \\ \hline
-		Anne  \\ \hline
-		Anthony  \\    \hline
-	\end{tabular}
-	\end{table}				
+		\begin{table}[H]
+			\centering
+			\caption*{}
+			
+			\begin{tabular}{|l|}
+				\hline
+				First\_Name  \\ \hline
+				Anne  \\ \hline
+				Anthony  \\    \hline
+			\end{tabular}
+		\end{table}				
 	\end{frame}
 	
 	\begin{frame}{Inner Query By example- SAS}
@@ -208,52 +208,52 @@
 				\item One student, multiple classes \pause
 			\end{itemize} 
 		\end{itemize}
-
-\begin{table}[!H]
-	\centering
-	\caption*{StuClass\_Table}
-	\begin{tabular}{|l|l|l|l|}
-		\hline
-		S\_ID & Class\_Num & Class\_Name & Class\_Dept \\ \hline
-		1 & 602 & Statistical Inference II & Biostatistics \\ \hline
-		1 & 651 & Applied Linear Regression II & Biostatistics \\ \hline
-		2 & 516 & Epidemiology II & Epidemiology \\ \hline
-		3 & 601 & Statistical Inference I & Biostatistics \\ \hline
-		3 & 531 & Analysis of Time Series & Statistics \\ \hline
-	\end{tabular}
-\end{table}
-
 		
-\end{frame}
-
-\begin{frame}{Type of Joins}
-	\begin{itemize}
-		\item Left Outer
+		\begin{table}[!H]
+			\centering
+			\caption*{StuClass\_Table}
+			\begin{tabular}{|l|l|l|l|}
+				\hline
+				S\_ID & Class\_Num & Class\_Name & Class\_Dept \\ \hline
+				1 & 602 & Statistical Inference II & Biostatistics \\ \hline
+				1 & 651 & Applied Linear Regression II & Biostatistics \\ \hline
+				2 & 516 & Epidemiology II & Epidemiology \\ \hline
+				3 & 601 & Statistical Inference I & Biostatistics \\ \hline
+				3 & 531 & Analysis of Time Series & Statistics \\ \hline
+			\end{tabular}
+		\end{table}
+		
+		
+	\end{frame}
+	
+	\begin{frame}{Type of Joins}
 		\begin{itemize}
-			\item Get everything from 'left' table, matching items from right
+			\item Left Outer
+			\begin{itemize}
+				\item Get everything from 'left' table, matching items from right
+			\end{itemize}
+			\item Right Outer
+			\begin{itemize}
+				\item Get everything from 'right' table, matching items from left
+			\end{itemize}
+			\item Inner
+			\begin{itemize}
+				\item  Only items that are found in both tables
+			\end{itemize}
+			\item More...
 		\end{itemize}
-		\item Right Outer
-		\begin{itemize}
-			\item Get everything from 'right' table, matching items from left
-		\end{itemize}
-		\item Inner
-		\begin{itemize}
-			\item  Only items that are found in both tables
-		\end{itemize}
-		\item More...
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Type of Joins}
-	\centering
-	\includegraphics[width = .78 \textwidth]{Visual_SQL_JOINS_orig.jpg}
-\end{frame}
-
-
-
+	\end{frame}
+	
+	\begin{frame}{Type of Joins}
+		\centering
+		\includegraphics[width = .78 \textwidth]{Visual_SQL_JOINS_orig.jpg}
+	\end{frame}
+	
+	
+	
 	\begin{frame}{Join: Example}
 		\begin{block}{Join: Formulaic}
-			SELECT Table\_1.$<$ColumnNames$>$, Table\_2.$<$ColumnNames$>$ FROM $<$Table1$>$ $<$Type$>$ JOIN Table\_2 ON Table\_1.key = Table\_2.key ;
+			SELECT Table\_1.$<$ColumnNames$>$, Table\_2.$<$ColumnNames$>$ FROM $<$TableName$>$ $<$Type$>$ JOIN 
 		\end{block}
 		\begin{block}{Join: Example}
 			SELECT Student\_Table.First\_Name StuClass\_Table.Class\_Name FROM Student\_Table INNER JOIN StuClass\_Table ON Student\_Table.S\_ID = StuClass\_Table.S\_ID;
@@ -261,9 +261,9 @@
 	\end{frame}
 	
 	\begin{frame}{Join: Example}
-			\begin{block}{Join: Example}
-				SELECT Student\_Table.First\_Name, StuClass\_Table.Class\_Name FROM Student\_Table INNER JOIN StuClass\_Table ON Student\_Table.S\_ID = StuClass\_Table.S\_ID;
-			\end{block}		
+		\begin{block}{Join: Example}
+			SELECT Student\_Table.First\_Name, StuClass\_Table.Class\_Name FROM Student\_Table INNER JOIN StuClass\_Table ON Student\_Table.S\_ID = StuClass\_Table.S\_ID;
+		\end{block}		
 		\begin{table}[H]
 			\centering
 			\begin{tabular}{|l|l|l|}
@@ -302,6 +302,6 @@
 		\centering
 		Any Questions?
 	\end{frame}
-
-
+	
+	
 \end{document}
