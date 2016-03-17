@@ -1,0 +1,72 @@
+/* 
+SAS Script to accompany Biostats Computing Workshop: SQL
+*/
+
+
+/* Read in Data */ 
+data Student_Table;
+input S_ID First_Name $ Last_Name $ Student_Age Student_Major $31.;
+datalines;
+1 John Smith 23 Biostatistics
+2 Anne Doroughty 21 Biostatistics
+3 Anthony Jones 19 Statistics
+;
+
+data StuClass_Table;
+infile datalines delimiter=','; 
+length Class_Name $28.;
+input S_ID Class_Num Class_Name $ Class_Dept $40.;
+datalines;
+1,602,Statistical Inference II,Biostatistics
+1,651,Applied Linear Regression II,Biostatistics
+2,516,Epidemiology II,Epidemiology
+3,601,Statistical Inference I,Biostatistics
+3,531,Analysis of Time Series,Statistics
+;
+
+/* First Exercise: SELECT */
+PROC SQL;
+SELECT 
+	First_Name 
+FROM 
+	Student_Table; 
+QUIT;
+
+/* Second Exercise: WHERE */
+PROC SQL;
+SELECT 
+	First_Name
+FROM 
+	Student_Table
+WHERE Student_Age < 22; 
+QUIT;
+
+/* Third Exercise: GROUP BY */
+PROC SQL;
+SELECT Student_Major, SUM(Student_Age) /*Could use an Alias here i.e. SELECT SUM(Student_Age) As Age_Sum ...*/  
+FROM Student_Table 
+WHERE Student_Age > 19 
+GROUP BY Student_Major; 
+QUIT;
+
+/* Fourth Exercise: Inner Query */
+
+PROC SQL;
+SELECT 
+	First_Name 
+FROM
+	(SELECT * FROM Student_Table WHERE Student_Age < 22) ;
+ QUIT;
+
+/* Fifth Exercise: Joins */
+
+PROC SQL;
+SELECT Student_Table.First_Name,
+StuClass_Table.Class_Name
+FROM 
+	Student_Table
+INNER JOIN 
+	StuClass_Table
+ON 
+	Student_Table.S_ID = StuClass_Table.S_ID ; 
+QUIT;
